@@ -3,7 +3,7 @@
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { NotebookTabs, ArrowRight, ShieldCheck, Zap, Sparkles } from "lucide-react"
+import { NotebookTabs, ArrowRight, ShieldCheck, Zap, Sparkles, ShieldAlert } from "lucide-react"
 import { useAuth } from "@/lib/auth"
 import { Button } from "@/components/ui/button"
 
@@ -27,11 +27,17 @@ export default function HomePage() {
             </div>
             <span className="font-bold text-xl tracking-tight">NotePlatform</span>
           </div>
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" asChild>
-              <Link href="/login">Sign In</Link>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/login">User Login</Link>
             </Button>
-            <Button asChild>
+            <Button variant="outline" size="sm" asChild className="border-slate-800 text-slate-800 dark:border-slate-200 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">
+              <Link href="/admin-login" className="flex items-center gap-1.5">
+                <ShieldAlert className="h-4 w-4 text-amber-500" />
+                <span>Admin Login</span>
+              </Link>
+            </Button>
+            <Button size="sm" asChild>
               <Link href="/register">Get Started</Link>
             </Button>
           </div>
@@ -60,7 +66,13 @@ export default function HomePage() {
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
-              <Link href="/login">Sign In to Dashboard</Link>
+              <Link href="/login">User Portal</Link>
+            </Button>
+            <Button size="lg" variant="secondary" asChild className="w-full sm:w-auto border">
+              <Link href="/admin-login" className="flex items-center gap-2">
+                <ShieldAlert className="h-4 w-4 text-amber-500" />
+                Admin Portal
+              </Link>
             </Button>
           </div>
         </div>
@@ -99,7 +111,16 @@ export default function HomePage() {
       </main>
 
       <footer className="border-t py-6 text-center text-sm text-muted-foreground">
-        NotePlatform &copy; {new Date().getFullYear()}. All rights reserved.
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-6">
+          <span>NotePlatform &copy; {new Date().getFullYear()}. All rights reserved.</span>
+          <div className="flex items-center gap-4 text-xs">
+            <Link href="/login" className="hover:underline">User Login</Link>
+            <span>&bull;</span>
+            <Link href="/admin-login" className="hover:underline flex items-center gap-1 text-amber-600 dark:text-amber-400">
+              <ShieldAlert className="h-3 w-3" /> Admin Login
+            </Link>
+          </div>
+        </div>
       </footer>
     </div>
   )
