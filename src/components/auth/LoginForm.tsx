@@ -144,6 +144,15 @@ export function LoginForm() {
           Sign up
         </Link>
       </p>
+
+      <div className="pt-2 text-center border-t border-border/50">
+        <Link
+          href="/admin-login"
+          className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1"
+        >
+          Administrator Sign In &rarr;
+        </Link>
+      </div>
     </div>
   )
 }
